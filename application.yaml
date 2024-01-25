@@ -6,7 +6,8 @@ metadata:
   # Add a this finalizer ONLY if you want these to cascade delete.
 
 spec:
-
+  project: stock-city
+  
   source:
     repoURL: https://github.com/easttop115/itbank08.git
     targetRevision: main            # HEAD는 소스 리포지토리의 가장 최신 리비전, 보통 main 브랜치
