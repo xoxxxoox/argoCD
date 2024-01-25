@@ -5,7 +5,7 @@ metadata:
   namespace: argo
   annotations:
     kubernetes.io/ingress.class: alb
-    alb.ingress.kubernetes.io/load-balancer-name: stock-alb
+    alb.ingress.kubernetes.io/load-balancer-name: argo-alb
     alb.ingress.kubernetes.io/scheme: internet-facing
     alb.ingress.kubernetes.io/target-group-attributes: stickiness.enabled=true,stickiness.lb_cookie.duration_seconds=600
     alb.ingress.kubernetes.io/target-type: ip
@@ -17,7 +17,7 @@ metadata:
 
 spec:
   rules:
-    - host: dh.itbank08.link
+    - host: su.itbank08.link
       http:
         paths:
           - pathType: Prefix
