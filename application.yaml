@@ -17,7 +17,8 @@ spec:
     #   valueFiles:
     #   - my-values.yaml
   
-  destination:
+  destination: 
+    server: https://kubernetes.default.svc
     namespace: default
   
   syncPolicy:
