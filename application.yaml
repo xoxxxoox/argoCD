@@ -12,7 +12,7 @@ spec:
   source:
     repoURL: https://github.com/xoxxxoox/argoCD.git
     targetRevision: main
-    path: argoCD/stock-city/
+    path: stock-city
     # helm:
     #   valueFiles:
     #   - my-values.yaml
