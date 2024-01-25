@@ -6,7 +6,7 @@ metadata:
   # Add a this finalizer ONLY if you want these to cascade delete.
 
 spec:
-  project: stock-city
+  project: default
   
   source:
     repoURL: https://github.com/easttop115/itbank08.git
