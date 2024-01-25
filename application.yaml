@@ -9,9 +9,9 @@ spec:
   project: default
   
   source:
-    repoURL: https://github.com/easttop115/itbank08.git
+    repoURL: https://github.com/xoxxxoox/argoCD.git
     targetRevision: main            # HEAD는 소스 리포지토리의 가장 최신 리비전, 보통 main 브랜치
-    path: /
+    path: stock-city
   
   destination:
     server: https://kubernetes.default.svc
