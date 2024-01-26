@@ -1,0 +1,35 @@
+# argo-helm/external-dns-chart/template/deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: external-dns
+  labels:
+    app.kubernetes.io/name: external-dns
+  namespace: {{ .Values.deployment.namespace }}
+spec:
+  strategy:
+    type: {{ .Values.deployment.strategy.type }}
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: external-dns
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: external-dns
+      annotations:
+        eks.amazonaws.com/role-arn: arn:aws:iam::477159410287:role/{{ .Values.externalDNS.roleName }}
+
+    spec:
+      serviceAccountName: external-dns
+      containers:
+        - name: {{ .Values.deployment.template.spec.containers.name }}
+          image: {{ .Values.deployment.template.spec.containers.image }}
+          args:
+            - --source=service
+            - --source=ingress
+            - --domain-filter={{ .Values.externalDNS.domainFilter }}
+            - --provider={{ .Values.externalDNS.provider }}
+            - --policy={{ .Values.externalDNS.policy }}
+            - --aws-zone-type={{ .Values.externalDNS.awsZoneType }}
+            - --registry={{ .Values.externalDNS.registry }}
+            - --txt-owner-id={{ .Values.externalDNS.txtOwnerId }}

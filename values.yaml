@@ -1,0 +1,64 @@
+# ingress-chart/values.yaml
+ingress:
+  name: my-ingress
+  namespace: stock-city
+  loadBalancerName: stock-alb
+  certificateArn: arn:aws:acm:ap-northeast-2:477159410287:certificate/8f983667-7eee-4d20-9072-3d88255f37cc
+  serviceName: web-svc
+  hostname: su.itbank08.link
+
+service:
+  name: web-svc
+  labels:
+    app: web-app
+    project: stock-city
+  namespace: stock-city
+  serviceType: NodePort
+  port: 80
+
+deployment:
+  name: argo-deploy
+  labels:
+    app: web-app
+    project: stock-city
+  namespace: stock-city
+  replicas: 1
+  containerName: web-app
+  containerRegistry: 477159410287.dkr.ecr.ap-northeast-2.amazonaws.com
+  containerImageName: itbank08
+  containerImageTag: latest
+  containerPort: 80
+  resources:
+    limits:
+      memory: "500Mi"
+      cpu: "500m"
+
+# argo-helm/external-dns-chart/values.yaml
+externalDNS:
+  roleName: sua-EKSExternalDNSRole
+  domainFilter: itbank08.link
+  provider: aws
+  policy: sync
+  awsZoneType: public
+  registry: txt
+  txtOwnerId: Z00635613ERGDRY3ESU8T
+
+deployment:
+  namespace: stock-city
+  strategy:
+    type: Recreate
+
+clusterRole:
+  rules:
+    - apiGroups: [""]
+      resources: ["services","endpoints","pods","nodes"]
+      verbs: ["get","watch","list"]
+    - apiGroups: ["extensions","networking.k8s.io"]
+      resources: ["ingresses"]
+      verbs: ["get","watch","list"]
+
+externalDNS:
+  clusterRoleBinding:
+    subjects:
+      - serviceAccount: external-dns
+        namespace: stock-city

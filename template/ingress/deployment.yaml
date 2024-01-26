@@ -1,0 +1,28 @@
+# deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.deployment.name }}
+  labels:
+    app: {{ .Values.deployment.labels.app }}
+    project: {{ .Values.deployment.labels.project }}
+  namespace: {{ .Values.deployment.namespace }}
+spec:
+  replicas: {{ .Values.deployment.replicas }}
+  selector:
+    matchLabels:
+      app: {{ .Values.deployment.labels.app }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.deployment.labels.app }}
+    spec:
+      containers:
+        - name: {{ .Values.deployment.containerName }}
+          image:  "{{ .Values.deployment.containerRegistry }}/{{ .Values.deployment.containerImageName }}:{{ .Values.deployment.containerImageTag }}"
+          ports:
+            - containerPort: {{ .Values.deployment.containerPort }}
+          resources:
+            limits:
+              memory: {{ .Values.deployment.resources.limits.memory }}
+              cpu: {{ .Values.deployment.resources.limits.cpu }}

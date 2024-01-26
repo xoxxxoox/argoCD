@@ -1,0 +1,16 @@
+# service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Values.service.name }}
+  labels:
+    app: {{ .Values.service.labels.app }}
+    project: {{ .Values.service.labels.project }}
+  namespace: {{ .Values.service.namespace }}
+spec:
+  type: {{ .Values.service.serviceType }}
+  selector:
+    app: {{ .Values.service.labels.app }}
+  ports:
+    - port: 80
+      targetPort: 80
