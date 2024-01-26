@@ -21,7 +21,7 @@ spec:
       http:
         paths:
           - pathType: Prefix
-            path: /
+            path: /stock-city
             backend:
               service:
                 name: web-svc
