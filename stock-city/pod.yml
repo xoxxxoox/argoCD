@@ -1,7 +1,7 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: dh-ingress
+  name: argo-ingress
   namespace: stock-city
   annotations:
     kubernetes.io/ingress.class: alb
