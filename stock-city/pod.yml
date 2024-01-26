@@ -1,8 +1,8 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: my-ingress
-  namespace: argo
+  name: stock-ingress
+  namespace: stock-city
   annotations:
     kubernetes.io/ingress.class: alb
     alb.ingress.kubernetes.io/load-balancer-name: argo-alb
@@ -36,18 +36,16 @@ metadata:
   labels:
     app: web-app
     project: stock-city
-  namespace: argo
+  namespace: stock-city
 spec:
   type: NodePort
   selector:
     app: web-app
   ports:
-  - port: 80
-    targetPort: 80
+    - port: 80
+      targetPort: 80
 
 ---
-
-
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -55,7 +53,7 @@ metadata:
   labels:
     app: web-app
     project: stock-city
-  namespace: argo
+  namespace: stock-city
 spec:
   replicas: 1
   selector:
@@ -67,11 +65,11 @@ spec:
         app: web-app
     spec:
       containers:
-      - name: web-app
-        image: 477159410287.dkr.ecr.ap-northeast-2.amazonaws.com/itbank08:latest
-        ports:
-        - containerPort: 80
-        resources:
-          limits:
-            memory: "500Mi"
-            cpu: "500m"
+        - name: web-app
+          image: 477159410287.dkr.ecr.ap-northeast-2.amazonaws.com/itbank08:latest
+          ports:
+            - containerPort: 80
+          resources:
+            limits:
+              memory: "500Mi"
+              cpu: "500m"
