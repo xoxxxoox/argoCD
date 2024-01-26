@@ -1,15 +1,15 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: stock-ingress
+  name: dh-ingress
   namespace: stock-city
   annotations:
     kubernetes.io/ingress.class: alb
-    alb.ingress.kubernetes.io/load-balancer-name: argo-alb
+    alb.ingress.kubernetes.io/load-balancer-name: dh-alb
     alb.ingress.kubernetes.io/scheme: internet-facing
     alb.ingress.kubernetes.io/target-group-attributes: stickiness.enabled=true,stickiness.lb_cookie.duration_seconds=600
     alb.ingress.kubernetes.io/target-type: ip
-    external-dns.alpha.kubernetes.io/hostname: su.itbank08.link
+    external-dns.alpha.kubernetes.io/hostname: dh.itbank08.link
     alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}, {"HTTPS":443}]'
     alb.ingress.kubernetes.io/ssl-redirect: "443"
     alb.ingress.kubernetes.io/ssl-policy: ELBSecurityPolicy-TLS13-1-2-2021-06
@@ -17,7 +17,7 @@ metadata:
 
 spec:
   rules:
-    - host: su.itbank08.link
+    - host: dh.itbank08.link
       http:
         paths:
           - pathType: Prefix
