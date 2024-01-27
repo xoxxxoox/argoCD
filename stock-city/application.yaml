@@ -12,7 +12,7 @@ spec:
   source:
     repoURL: https://github.com/xoxxxoox/argoCD.git
     targetRevision: main
-    path: template
+    path: helm-chart
     helm:
       valueFiles:
       - values.yaml
