@@ -7,7 +7,7 @@ metadata:
   - resources-finalizer.argocd.argoproj.io
 
 spec:
-  project: default
+  project: stock-city
   
   source:
     repoURL: https://github.com/xoxxxoox/argoCD.git
