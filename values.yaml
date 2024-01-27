@@ -62,3 +62,9 @@ externalDNS:
     subjects:
       - serviceAccount: external-dns
         namespace: stock-city
+
+alb-controller:
+  serviceAccount:
+    name: aws-load-balancer-controller
+    namespace: argo
+  roleName: sua-EKSLoadBalancerControllerRole
