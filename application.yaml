@@ -10,9 +10,9 @@ spec:
   project: default
   
   source:
-    repoURL: https://github.com/xoxxxoox/argoCD.git
+    repoURL: https://github.com/hosuak/my-chart.git
     targetRevision: main
-    path: stock-city/helm-chart
+    path: argo-demo/templates
     helm:
       valueFiles:
       - values.yaml
