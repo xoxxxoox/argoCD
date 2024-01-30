@@ -17,7 +17,7 @@ service:
   port: 80
 
 deployment:
-  name: argo-deploy
+  name: web-deploy
   labels:
     app: web-app
     project: stock-city
@@ -65,6 +65,7 @@ externalDNS:
 
 alb-controller:
   serviceAccount:
+  
     name: aws-load-balancer-controller
-    namespace: argo
+    namespace: stock-city
   roleName: sua-EKSLoadBalancerControllerRole
